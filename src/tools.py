@@ -2,13 +2,26 @@ import pygame.draw
 from constant import *
 
 
+def drop_piece(self, pos):
+    x, y = -1, -1
+    for item in position_map.keys():
+        if pos[0] in item:
+            x = position_map[item]
+        if pos[1] in item:
+            y = position_map[item]
+    if self.mode == 1:
+        if self.board[x][y] == 0:
+            self.board[x][y] = self.piece
+            self.piece = -self.piece
+
+
 # 判断是否形成5子
 def check_board(board: list[list]):
     # 判断列
     for item in board:
         try:
-            if str(item).index('3, 3, 3, 3, 3'):
-                return 3
+            if str(item).index('-1, -1, -1, -1, -1'):
+                return -1
         except ValueError:
             pass
         try:
@@ -26,8 +39,8 @@ def check_board(board: list[list]):
     # 判断行
     for item in tt:
         try:
-            if str(item).index('3, 3, 3, 3, 3'):
-                return 3
+            if str(item).index('-1, -1, -1, -1, -1'):
+                return -1
         except ValueError:
             pass
         try:
@@ -65,8 +78,8 @@ def check_board(board: list[list]):
     # 判断对角线是否形成5子
     for item in t1:
         try:
-            if str(item).index('3, 3, 3, 3, 3'):
-                return 3
+            if str(item).index('-1, -1, -1, -1, -1'):
+                return -1
         except ValueError:
             pass
         try:
@@ -76,8 +89,8 @@ def check_board(board: list[list]):
             pass
     for item in t2:
         try:
-            if str(item).index('3, 3, 3, 3, 3'):
-                return 3
+            if str(item).index('-1, -1, -1, -1, -1'):
+                return -1
         except ValueError:
             pass
         try:

@@ -12,10 +12,8 @@ class Game:
         self.row = ROW
         self.column = COLUMN
         self.mode = MODE
-        if self.mode == 1:
-            self.piece = [1, 2]
-        else:
-            self.piece = [1]
+        # 通过正负1，对数字的取负数操作来实现黑白棋下棋切换
+        self.piece = 1
         self.screen = None
         self.board = board
         self.init_pygame()
@@ -36,10 +34,11 @@ class Game:
             self.event_handler()
             pygame.display.update()
 
+    # 游戏结束
     def Game_over(self, color):
         if color == 1:
             self.screen.fill(Black)
-        if color == 3:
+        if color == -1:
             self.screen.fill(white)
 
     def event_handler(self):
@@ -47,16 +46,12 @@ class Game:
             if event.type == QUIT:
                 exit()
             if event.type == MOUSEBUTTONDOWN:
-                x, y = -1, -1
-                for item in position_map.keys():
-                    if event.pos[0] in item:
-                        x = position_map[item]
-                    if event.pos[1] in item:
-                        y = position_map[item]
-                if self.mode == 1:
-                    self.board[x][y] = event.button
+                # 落子，改变棋盘
+                drop_piece(self, event.pos)
+                # 重新画棋盘
                 draw(self.screen, self.board)
+                # 判断本局是否结束
                 if check_board(self.board) == 1:
                     self.Game_over(1)
-                if check_board(self.board) == 3:
-                    self.Game_over(3)
+                if check_board(self.board) == -1:
+                    self.Game_over(-1)

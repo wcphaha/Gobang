@@ -6,9 +6,9 @@ ROW, COLUMN = 15, 15
 space = 50
 # 棋盘格边长
 size = 40
-# 初始化棋盘,0表示空白，1表示落白子，3表示落黑子
+# 初始化棋盘,0表示空白，1表示落黑子，-1表示落白子
 board = [[0] * 15 for i in range(15)]
-BlackPiece, WhitePiece = 1, 3
+BlackPiece, WhitePiece = 1, -1
 # 模式,1表示单人模式，2表示多人模式
 MODE = 1
 # 游戏名称
