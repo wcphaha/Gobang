@@ -113,7 +113,7 @@ def draw(screen, board):
         for j in range(15):
             if board[i][j] == BlackPiece:
                 point = (space + i * size, space + j * size)
-                pygame.draw.circle(screen, Black, point, 19)
+                pygame.draw.circle(screen, Black, point, 15)
             if board[i][j] == WhitePiece:
                 point = (space + i * size, space + j * size)
-                pygame.draw.circle(screen, white, point, 19)
+                pygame.draw.circle(screen, white, point, 15)

@@ -26,6 +26,9 @@ class Game:
         self.screen = pygame.display.set_mode([self.width, self.height])
         self.screen.fill(Wheat)
 
+    def init_menu(self):
+        pass
+
     def init_map(self):
         draw(self.screen, self.board)
 
@@ -37,9 +40,11 @@ class Game:
     # 游戏结束
     def Game_over(self, color):
         if color == 1:
-            self.screen.fill(Black)
+            # self.screen.fill(Black)
+            draw(self.screen, self.board)
         if color == -1:
-            self.screen.fill(white)
+            # self.screen.fill(white)
+            draw(self.screen, self.board)
 
     def event_handler(self):
         for event in pygame.event.get():
