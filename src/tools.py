@@ -2,6 +2,14 @@ import pygame.draw
 from constant import *
 
 
+# 悔棋
+def back_step(self):
+    pos = self.record[-self.piece][-1]
+    self.board[pos[0]][pos[1]] = 0
+    draw(self.screen, self.board)
+    self.piece = -self.piece
+
+
 def drop_piece(self, pos):
     x, y = -1, -1
     for item in position_map.keys():
@@ -11,6 +19,7 @@ def drop_piece(self, pos):
             y = position_map[item]
     if self.mode == 1:
         if self.board[x][y] == 0:
+            self.record[self.piece].append([x, y])
             self.board[x][y] = self.piece
             self.piece = -self.piece
 
@@ -102,6 +111,8 @@ def check_board(board: list[list]):
 
 # 初始化和更新棋盘界面
 def draw(screen, board):
+    # 清屏
+    screen.fill(Wheat)
     # 画网盘
     for i in range(15):
         start = (space, space + i * size)
